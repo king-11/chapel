@@ -4388,6 +4388,16 @@ qioerr qio_get_fs_type(qio_file_t* fl, int* out)
   return 0;
 }
 
+qioerr qio_get_fd(qio_file_t* fl, int* out)
+{
+  if(fl->fd != -1)
+    *out = fl->fd;
+  else
+    QIO_RETURN_CONSTANT_ERROR(ENOSYS, "no fd");
+
+  return 0;
+}
+
 
 qioerr qio_get_chunk(qio_file_t* fl, int64_t* len_out)
 {
